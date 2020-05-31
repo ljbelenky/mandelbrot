@@ -28,8 +28,7 @@ class Mandelbrot:
         self.limit = 100
         self.threshold = 2000
 
-    @staticmethod   
-    def mandelbrot(z0):
+    def mandelbrot(self,z0):
         z = z0
         for t in range(self.limit):
             if abs(z) > self.threshold:
@@ -82,7 +81,7 @@ app = Flask(__name__)
 @app.route('/home')
 @app.route('/')
 def home():
-    return render_template('home.html', iamge = m.plot())
+    return render_template('home.html', image = m.plot())
 
 @app.route('/about')
 def about():
