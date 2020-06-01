@@ -25,8 +25,8 @@ class Mandelbrot:
         self.n = 500
         self.real_center = -.5
         self.imaginary_center = 0
-        self.limit = 100
-        self.threshold = 2000
+        self.limit = 200
+        self.threshold = 100
 
     def mandelbrot(self,z0):
         z = z0
@@ -46,7 +46,10 @@ class Mandelbrot:
         imaginary = np.linspace(self.imaginary_center - self.span/2, self.imaginary_center + self.span/2, self.n)
         X = np.array([[complex(r,i) for r in real] for i in imaginary]).flatten()
         
-        ax.imshow(np.vectorize(self.mandelbrot)(X).reshape(-1,self.n)[::-1,:])
+        x = np.vectorize(self.mandelbrot)(X).reshape(-1,self.n)[::-1,:]
+        # x = x + x[x>0].min().astype('uint8')
+
+        ax.imshow(x)
         ax.get_xaxis().set_ticks([])
         ax.get_yaxis().set_ticks([])
 
@@ -60,10 +63,10 @@ class Mandelbrot:
 
         
     def zoom_in(self):
-        self.span /= 2
+        self.span /= 3
 
     def zoom_out(self):
-        self.span *= 2
+        self.span *= 3
         
     def left(self):
         self.real_center += self.span/3
