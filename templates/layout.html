@@ -12,22 +12,27 @@
     {% if title %}
         <title>My Model - {{ title }}</title>
     {% else %}
-        <title>My Model</title>
+        <title>Mandelbrot Set</title>
     {% endif %}
 </head>
 <body>
     <header class="site-header">
       <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
         <div class="container">
-          <a class="navbar-brand mr-4" href="/">Car Model</a>
+          <a class="navbar-brand mr-4" href="/">The World's Simplest Mandelbrot Calculator</a>
           <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
           <div class="collapse navbar-collapse" id="navbarToggle">
             <div class="navbar-nav mr-auto">
-              <a class="nav-item nav-link" href="/">Home</a>
+              <a class="nav-item nav-link" href="/home">Home</a>
+              <a class="nav-item nav-link" href="/in">Zoom In</a>
+              <a class="nav-item nav-link" href="/out">Zoom Out</a>
+              <a class="nav-item nav-link" href="/up">Up</a>
+              <a class="nav-item nav-link" href="/down">Down</a>
+              <a class="nav-item nav-link" href="/left">Left</a>
+              <a class="nav-item nav-link" href="/right">Right</a>
               <a class="nav-item nav-link" href="/about">About</a>
-              <a class="nav-item nav-link" href="/predict">Predict</a>
           </div>
         </div>
       </nav>

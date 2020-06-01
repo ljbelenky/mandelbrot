@@ -21,10 +21,10 @@ many iterations it takes for that to happen
 
 class Mandelbrot:
     def __init__(self):
-        self.span = 1
+        self.span = 3
         self.n = 500
-        self.real_center = .5
-        self.imaginary_center = .5
+        self.real_center = -.5
+        self.imaginary_center = 0
         self.limit = 100
         self.threshold = 2000
 
@@ -40,13 +40,15 @@ class Mandelbrot:
         fig = Figure()
         ax = fig.subplots()
         
-        plt.figure(figsize=(10,10))
+        plt.figure(figsize=(20,20))
 
         real = np.linspace(self.real_center - self.span/2, self.real_center+self.span/2, self.n)
         imaginary = np.linspace(self.imaginary_center - self.span/2, self.imaginary_center + self.span/2, self.n)
         X = np.array([[complex(r,i) for r in real] for i in imaginary]).flatten()
         
         ax.imshow(np.vectorize(self.mandelbrot)(X).reshape(-1,self.n)[::-1,:])
+        ax.get_xaxis().set_ticks([])
+        ax.get_yaxis().set_ticks([])
 
         pngImage = io.BytesIO()
         FigureCanvas(fig).print_png(pngImage)
@@ -79,6 +81,10 @@ class Mandelbrot:
 app = Flask(__name__)
 
 @app.route('/home')
+def reset():
+    m.__init__()
+    return home()
+
 @app.route('/')
 def home():
     return render_template('home.html', image = m.plot())
@@ -87,6 +93,35 @@ def home():
 def about():
     return render_template('about.html')
 
+@app.route('/in')
+def zoom_in():
+    m.zoom_in()
+    return home()
+
+@app.route('/out')
+def zoom_out():
+    m.zoom_out()
+    return home()
+
+@app.route('/up')
+def up():
+    m.up()
+    return home()
+
+@app.route('/down')
+def down():
+    m.down()
+    return home()
+
+@app.route('/left')
+def left():
+    m.left()
+    return home()
+
+@app.route('/right')
+def right():
+    m.right()
+    return home()
 
 
 if __name__ == '__main__':
