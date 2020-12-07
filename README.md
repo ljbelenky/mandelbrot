@@ -14,3 +14,15 @@ Ideas:
 
 ![Mandelbrot Set](images/mandelbrot.png)
 
+## Instructions to get it running on AWS:
+
+1. Spin up an EC2 instance. Nano or Micro works fine, and Ubuntu 18.04 AMI
+1. Set inbound and outbound rules: ssh for my IP address, HTTP for all addresses
+1. ssh in to instance
+1. git clone this repo and cd to directory
+1. sudo apt install docker.io
+1. sudo docker build -t mandelbrot .
+1. tmux
+1. sudo docker run -p 80:5001 mandelbrot
+1. ctrl-b, d
+1. find IP address of EC2 and visit website (note: it's on http, not https)
